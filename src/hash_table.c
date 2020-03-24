@@ -3,6 +3,13 @@
 
 #include "hash_table.h"
 
+char *strdup(const char *src) {
+    char *dst = malloc(strlen (src) + 1);  // Space for length plus nul
+    if (dst == NULL) return NULL;          // No memory
+    strcpy(dst, src);                      // Copy the characters
+    return dst;                            // Return the new string
+}
+
 static ht_items * ht_new_item(const char * k, const char * v)
 {
     ht_items * i = malloc(sizeof(ht_items));
