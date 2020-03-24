@@ -23,3 +23,26 @@ ht_hash_table * ht_new()
 
     return ht;
 }
+
+static void ht_del_item(ht_items * i)
+{
+    free(i -> key);
+    free(i -> value);
+    free(i);
+}
+
+void ht_del_hash_table(ht_hash_table * ht)
+{
+    for (size_t i = 0; i < ht -> size; i++)
+    {
+        ht_items * item = ht -> items[i];
+
+        if (item != NULL)
+        {
+            ht_del_item(item);
+        }
+    }
+
+    free(ht -> items);
+    free(ht);
+}
