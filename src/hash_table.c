@@ -99,3 +99,25 @@ void ht_insert(ht_hash_table * ht, const char * key, const char * value)
     ht -> items[index] = item;
     ht -> count++;
 }
+
+char * ht_search(ht_hash_table * ht, const char * key)
+{
+    int index = ht_get_hash(key, ht -> size, 0);
+
+    ht_items * item = ht -> items[index];
+
+    int i = 1;
+    while(item != NULL)
+    {
+        if(strcmp(item -> key, key) == 0)
+        {
+            return item -> value;
+        }
+
+        index = ht_get_hash(key, ht -> size , i);
+        item = ht -> items[index];
+        i++;
+    }
+
+    return NULL;
+}
