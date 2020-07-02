@@ -4,6 +4,8 @@
 
 #include "hash_table.h"
 
+static ht_item HT_DELETED_ITEM = {NULL, NULL};
+
 char * strdup(const char *src) {
     char *dst = malloc(strlen (src) + 1);  // Space for length plus nul
     if (dst == NULL) return NULL;          // No memory
@@ -89,7 +91,7 @@ void ht_insert(ht_hash_table * ht, const char * key, const char * value)
     
     int i = 1;
 
-    while (cur_item != NULL)
+    while (cur_item != NULL && cur_item != &HT_DELETED_ITEM)
     {
         index = ht_get_hash(item -> key, ht -> size, i);
         cur_item = ht -> items[index];
@@ -107,11 +109,14 @@ char * ht_search(ht_hash_table * ht, const char * key)
     ht_item * item = ht -> items[index];
 
     int i = 1;
+
     while(item != NULL)
     {
-        if(strcmp(item -> key, key) == 0)
-        {
-            return item -> value;
+        if (item != &HT_DELETED_ITEM) {
+                if(strcmp(item -> key, key) == 0)
+                {
+                    return item -> value;
+                }
         }
 
         index = ht_get_hash(key, ht -> size , i);
@@ -121,8 +126,6 @@ char * ht_search(ht_hash_table * ht, const char * key)
 
     return NULL;
 }
-
-static ht_item HT_DELETED_ITEM = {NULL, NULL};
 
 void ht_delete(ht_hash_table * ht, const char * key)
 {
