@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <stdio.h>
 
 #include "hash_table.h"
 #include "prime.h"
@@ -32,6 +33,8 @@ ht_hash_table * ht_new()
     ht -> count = 0;
     ht -> items = calloc( (size_t) ht -> size, sizeof(ht_item *) );
 
+    printf("New hash table created!\n");
+
     return ht;
 }
 
@@ -56,6 +59,8 @@ void ht_del_hash_table(ht_hash_table * ht)
 
     free(ht -> items);
     free(ht);
+
+    printf("Hash table deleted!\n");
 }
 
 static int ht_hash(const char * s, const int a, const int m)
