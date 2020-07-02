@@ -3,6 +3,7 @@
 #include <math.h>
 
 #include "hash_table.h"
+#include "prime.c"
 
 static ht_item HT_DELETED_ITEM = {NULL, NULL};
 
