@@ -6,6 +6,7 @@
 #include "hash_table.h"
 #include "prime.h"
 
+// HT_DELETED_ITEM is used to mark a bucket containing a deleted item
 static ht_item HT_DELETED_ITEM = {NULL, NULL};
 
 char * strdup(const char *src) {
@@ -15,6 +16,7 @@ char * strdup(const char *src) {
     return dst;                            // Return the new string
 }
 
+// Initialises a new item containing k: v
 static ht_item * ht_new_item(const char * k, const char * v)
 {
     ht_item * i = malloc(sizeof(ht_item));
@@ -25,11 +27,12 @@ static ht_item * ht_new_item(const char * k, const char * v)
     return i;
 }
 
+// create a new hash table size of 100000
 ht_hash_table * ht_new()
 {
     ht_hash_table * ht = malloc(sizeof(ht_hash_table));
     
-    ht -> size = 53;
+    ht -> size = 100000;
     ht -> count = 0;
     ht -> items = calloc( (size_t) ht -> size, sizeof(ht_item *) );
 
@@ -38,6 +41,7 @@ ht_hash_table * ht_new()
     return ht;
 }
 
+// Deletes the ht_item i
 static void ht_del_item(ht_item * i)
 {
     free(i -> key);
@@ -45,6 +49,7 @@ static void ht_del_item(ht_item * i)
     free(i);
 }
 
+// Deletes the hash table
 void ht_del_hash_table(ht_hash_table * ht)
 {
     for (size_t i = 0; i < ht -> size; i++)
@@ -63,7 +68,10 @@ void ht_del_hash_table(ht_hash_table * ht)
     printf("Hash table deleted!\n");
 }
 
-static int ht_hash(const char * s, const int a, const int m)
+// Hash function 
+//
+// Returns tha hash of 's', an int between 0 and 'm' 
+static unsigned int ht_hash(const char * s, const int a, const int m)
 {
     long hash = 0;
     const int len_s = strlen(s);
