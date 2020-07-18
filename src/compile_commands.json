@@ -1,0 +1,17 @@
+[
+    {
+        "arguments": [
+            "gcc",
+            "-c",
+            "-Wall",
+            "-pedantic",
+            "-std=c99",
+            "-Werror",
+            "-o",
+            "../build/hash_table",
+            "main.c"
+        ],
+        "directory": "/home/minhradz/Desktop/C_Programming/Hash-Table-in-C/src",
+        "file": "main.c"
+    }
+]
