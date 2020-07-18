@@ -1,7 +1,7 @@
 [
     {
         "arguments": [
-            "gcc",
+            "clang",
             "-c",
             "-Wall",
             "-pedantic",
