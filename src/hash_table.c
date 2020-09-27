@@ -7,6 +7,10 @@
 
 #include "./prime.h"
 
+void ht_insert(ht_hash_table* ht, const char* key, const char* value);
+char* ht_search(ht_hash_table* ht, const char* key);
+void ht_delete(ht_hash_table* h, const char* key);
+
 // HT_DELETED_ITEM is used to mark a bucket containing a deleted item
 static ht_item HT_DELETED_ITEM = {NULL, NULL};
 
