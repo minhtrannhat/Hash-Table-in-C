@@ -5,7 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "./prime.h"
+static const int HT_PRIME_1 = 151;
+static const int HT_PRIME_2 = 163;
 
 void ht_insert(ht_hash_table* ht, const char* key, const char* value);
 char* ht_search(ht_hash_table* ht, const char* key);
