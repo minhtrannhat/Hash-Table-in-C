@@ -2,3 +2,4 @@ build/
 src/.clangd/
 src/.clang-format
 src/compile_commands.json
+src/.cache/
